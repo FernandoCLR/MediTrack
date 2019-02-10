@@ -2,7 +2,7 @@
     @extends('layouts.app')
     
     @section('content')
-        <h3> Online Help </h3>
+        <h2> Online Help </h2>
         <a class="btn btn-outline-primary float-right" href="/onlinehelp/create" role="button">Ask New Question</a>
         @if(count($help)>0)
         @foreach($help as $post)
