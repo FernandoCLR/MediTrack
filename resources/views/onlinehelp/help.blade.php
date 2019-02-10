@@ -1,0 +1,56 @@
+
+    @extends('layouts.app')
+    
+    @section('content')
+        <h3> Online Help </h3>
+        <a class="btn btn-outline-primary float-right" href="/onlinehelp/create" role="button">Ask New Question</a>
+        @if(count($help)>0)
+        @foreach($help as $post)
+        <div class="form-group">
+        <div class="card w-75 bg-primary text-white">
+            <div class="card  bg-dark text-white mess ">
+             <div class="row"> 
+               <div class="col"><h4>{{$post->title}}</h4></div>
+               <div class="col "><small>Written on :{{$post->created_at}} by {{$post->user->name}}</small></div>
+               </div>       
+                        <div ><h5>Question :{!!$post->question!!}</h5></div>
+                        <div >
+                        @if($post->answer==null)
+                        <p> The question haven,t been answerd yet.</p>
+                        @else 
+                        <div ><h5>Answer :{!!$post->answer!!}</h5></div>
+                        @endif
+                        </div>
+                        <a class="btn btn-outline-success" href="/onlinehelp/{{$post->id}}/edit" role="button">Edit</a>
+                        
+                     
+                         @if($post->user_id==auth()->user()->id)
+                         <div>
+                        {!!Form::open(['action'=>['onlineHelpController@destroy',$post->id],'method'=>'POST'])!!}
+                            {{Form::hidden('_method','DELETE')}}
+                           {{Form::submit('Delete',['class'=>'btn btn-outline-danger float-right'])}}
+
+                        {!!Form::close()!!} 
+                         </div>
+                        @else 
+
+                        @endif
+                        
+        </div>
+                     
+        </div>
+        
+        
+
+        </div>
+        
+        
+        
+        @endforeach
+    @else
+        <p> Sorry, No records found. </p>
+
+    @endif
+    @endsection
+    
+    
