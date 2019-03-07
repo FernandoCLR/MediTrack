@@ -13,8 +13,9 @@
           </div>
           <div class="table-responsive">
            <h3>Total Record Count : <span id="total_records"></span></h3>
-           <table class="table table-striped table-bordered">
+           <table class="table table-striped table-bordered " >
             <thead>
+            
              <tr>
               <th>First Name</th>
               <th>Second Name</th>
@@ -25,6 +26,7 @@
               <th>Bood Group</th>
               <th>Mobile Number</th>
              </tr>
+            
             </thead>
             <tbody>
      
@@ -58,11 +60,13 @@
            }
           })
          }
+            $(document).on('keyup', '#search', function(){
+                var query = $(this).val();
+                fetch_customer_data(query);
+                    });
         
-         $(document).on('keyup', '#search', function(){
-          var query = $(this).val();
-          fetch_customer_data(query);
-         });
         });
+
+        
         </script>
         
