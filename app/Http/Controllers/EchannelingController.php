@@ -12,10 +12,10 @@ class EchannelingController extends Controller
     
     function index()
     {
-     $area_list = DB::table('channels')
-         ->groupBy('area')
+     $hospital_list = DB::table('channels')
+         ->groupBy('hospital')
          ->get();
-     return view('echannel.create')->with('area_list', $area_list);
+     return view('echannel.create')->with('hospital_list', $hospital_list);
     }
 
     function fetch(Request $request)

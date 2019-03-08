@@ -10,26 +10,26 @@
    <h3 >MediTrack Channeling System</h3><br />
    {!! Form::open(['action'=> 'EchannelingController@store', 'method'=>'POST']) !!}
    <div class="form-group">
-    <select name="area" id="area" class="form-control input-lg dynamic" data-dependent="d_name">
-     <option value="">Select Specilized Area:</option>
-     @foreach($area_list as $area)
-     <option value="{{ $area->area}}">{{ $area->area }}</option>
+    <select name="hospital" id="hospital" class="form-control input-lg dynamic" data-dependent="area">
+     <option value="">Select hospital:</option>
+     @foreach($hospital_list as $hospital)
+     <option value="{{ $hospital->hospital}}">{{ $hospital->hospital }}</option>
      @endforeach
     </select>
    </div>
    <br />
    <div class="form-group">
-    <select name="d_name" id="d_name" class="form-control input-lg dynamic" data-dependent="hospital">
-     <option value="">Select Doctor Name:</option>
-    </select>
-   </div>
-   <br />
-   <div class="form-group">
-    <select name="hospital" id="hospital" class="form-control input-lg dynamic" data-dependent="date">
-     <option value="">Select Hospital:</option>
+    <select name="area" id="area" class="form-control input-lg dynamic" data-dependent="d_name">
+     <option value="">Select Specilized Area:</option>
     </select>
    </div>
    <br/>
+   <div class="form-group">
+      <select name="d_name" id="d_name" class="form-control input-lg dynamic" data-dependent="date">
+       <option value="">Select Doctor Name:</option>
+      </select>
+     </div>
+     <br />
    <div class="form-group">
     <select name="date" id="date" class="form-control input-lg dynamic" data-dependent="time">
      <option value="">Select Date:</option>
@@ -70,20 +70,20 @@
       }
      });
     
-     $('#area').change(function(){
+     $('#hospital').change(function(){
+      $('#area').val('');
       $('#d_name').val('');
-      $('#hospital').val('');
       $('#date').val('');
       $('#time').val('');
      });
     
-     $('#d_name').change(function(){
-      $('#hospital').val('');
+     $('#area').change(function(){
+      $('#d_name').val('');
       $('#date').val('');
       $('#time').val('');
      });
      
-     $('#hospital').change(function(){
+     $('#d_name').change(function(){
       $('#date').val('');
       $('#time').val('');
      });

@@ -28,10 +28,11 @@ class DashController extends Controller
    
     public function index()
     {
+        
         $user_id=auth()->user()->id;
         $dashes=Dash::all()->where('user_id',$user_id);
-        return view('dash.home')->with('dashes',$dashes);
-
+        return view('dash.home')->with('dashes',$dashes);   
+       
       
        
     }

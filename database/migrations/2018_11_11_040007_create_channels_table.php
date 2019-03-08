@@ -15,6 +15,7 @@ class CreateChannelsTable extends Migration
     {
         Schema::create('channels', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->string('area');
             $table->string('d_name');
             $table->string('hospital');

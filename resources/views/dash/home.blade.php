@@ -2,7 +2,20 @@
 
 @section('content')
 <br>
-
+@if(auth()->user()->access == 2)
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header bg-primary text-light"><h3>MediTrack Dashboard</h3></div><br>
+                
+                     <h4> You are loged in Hospital Account </h4>
+                    
+                </div>
+        </div>
+    </div>
+</div>
+@else 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -76,5 +89,5 @@
 </div>
 
 
-                     
+@endif                     
 @endsection

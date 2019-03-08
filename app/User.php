@@ -43,4 +43,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function event(){
         return $this->hasMany('App\Event');
     }
+    public function channel(){
+        return $this->hasMany('App\Channel');
+    }
 }

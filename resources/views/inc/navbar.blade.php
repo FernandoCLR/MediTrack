@@ -35,19 +35,24 @@
                         <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                     @endif
                 </li>
-            @else
-                
-                    
+            @else  
+                      @if(auth()->user()->access == 2)
+                      <li><a class="nav-item nav-link" href="/home">Dashboard </a></li>
+                      <li><a class="nav-item nav-link" href="/hospital">Channel Dash</a></li>
+                      <li><a class="nav-item nav-link" href="/live_search">Meditarck Search</a></li>
+                      @else
                     <li><a class="nav-item nav-link" href="/home">Dashboard </a></li>
                     <li><a class="nav-item nav-link" href="/timeline">My Timeline</a></li>
                     <li><a class="nav-item nav-link" href="/echannel">E-Channeling</a></li>
                     <li><a class="nav-item nav-link" href="/onlinehelp">Online Help</a></li>
                     <li><a class="nav-item nav-link" href="/events">Calender</a></li>
+                    <li><a class="nav-item nav-link" href="/echannel/show">Channel Dash</a></li>
                     @if(auth()->user()->access == 1)
                     <li><a class="nav-item nav-link" href="/live_search">Meditarck Search</a></li>
-                    <li><a class="nav-item nav-link" href="/echannel/show">Channel Dash</a></li>
                     @else 
                     @endif
+                         
+                    @endif    
                     <li><a class="nav-item nav-link" href="#">Meditarck App</a></li>
                     <li><a class="nav-item nav-link" href="#">More About MediTrack</a></li>
                   

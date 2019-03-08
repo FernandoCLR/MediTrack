@@ -41,4 +41,4 @@ Route::get('/live_search/history/{user}/create','LiveSearch@create');
 Route::get('echannel/create', 'EchannelingController@index')->middleware('verified');
 Route::post('echannel/create/fetch', 'EchannelingController@fetch')->name('echannel.create.fetch');
 
-
+Route::resource('hospital','HospitalController')->middleware('verified');
