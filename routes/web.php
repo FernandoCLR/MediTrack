@@ -15,19 +15,19 @@ Route::get('/', 'PagesController@welcome');
 Route::get('/registration', 'PagesController@registration');
 Route::get('/dashboard', 'PagesController@dashboard');
 
-Route::resource('timeline','TimelineControler');
+Route::resource('timeline','TimelineControler')->middleware('verified');
 
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
-Route::resource('home','DashController');
-Route::resource('onlinehelp','onlineHelpController');
-Route::resource('echannel','EchannelingController');
+Route::resource('home','DashController')->middleware('verified');
+Route::resource('onlinehelp','onlineHelpController')->middleware('verified');
+Route::resource('echannel','EchannelingController')->middleware('verified');
 
-Route::get('events', 'EventController@index')->name('events.index');
+Route::get('events', 'EventController@index')->name('events.index')->middleware('verified');
 Route::post('events', 'EventController@addEvents')->name('events.add');
 
-Route::get('/live_search', 'LiveSearch@index');
+Route::get('/live_search', 'LiveSearch@index')->middleware('verified');
 Route::get('/live_search/action', 'LiveSearch@action')->name('live_search.action');
 Route::get('/live_search/{row}','LiveSearch@show');
 Route::get('/live_search/history/{user}','LiveSearch@showtwo');
@@ -38,7 +38,7 @@ Route::post('/live_search/history/{user}/store','LiveSearch@store');
 Route::get('/live_search/history/{user}/create','LiveSearch@create');
 
 
-Route::get('echannel/create', 'EchannelingController@index');
+Route::get('echannel/create', 'EchannelingController@index')->middleware('verified');
 Route::post('echannel/create/fetch', 'EchannelingController@fetch')->name('echannel.create.fetch');
 
 
