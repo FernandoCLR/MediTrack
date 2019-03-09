@@ -5,6 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Timeline;
 use App\User;
+use Input;
+use Validator;
+use Session;
+use Redirect;
+
+
 
 
 class TimelineControler extends Controller
@@ -58,6 +64,8 @@ class TimelineControler extends Controller
         $post -> treatment = $request->input('treatment');
         $post -> status = $request->input('status');
         $post -> user_id = auth()->user()->id;
+        $post -> file_title = $request->input('file_title');
+        $post -> file_name = $request->input('file_name');
         $post -> save();
 
 
@@ -116,6 +124,8 @@ class TimelineControler extends Controller
         $post -> body = $request->input('body');
         $post -> treatment = $request->input('treatment');
         $post -> status = $request->input('status');
+        $post -> file_title = $request->input('file_title');
+        $post -> file_name = $request->input('file_name');
         $post -> save();
 
         return redirect('/timeline')->with('success','Timeline Event Updated');
@@ -134,4 +144,8 @@ class TimelineControler extends Controller
         $post -> delete();
         return redirect('/timeline')->with('success','Timeline Event Deleted');
     }
+
+
+    
+
 }

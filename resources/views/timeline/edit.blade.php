@@ -41,9 +41,16 @@
             {{Form::label('status','Patient status :')}}
             {{Form::text('status',$timeline->status,['class'=>'form-control  col-md-6','placeholder'=>'Patient status'])}}
 
-  </div>
+      </div>
+
+     
+        
+
            {{Form::hidden('_method','PUT')}}
             {{Form::submit('Save',['class'=>'btn btn-success'])}} 
     {!! Form::close() !!}  
+    
 </div>
+
+  
 @endsection

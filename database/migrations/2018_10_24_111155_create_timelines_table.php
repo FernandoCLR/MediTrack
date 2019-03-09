@@ -20,6 +20,9 @@ class CreateTimelinesTable extends Migration
                        $table->mediumText('body');
                        $table->mediumText('treatment');
                        $table->mediumText('status');
+                       $table->integer('user_id');
+                       $table->string('file_title')->nullable()->default(null);
+                       $table->string('file_name')->nullable()->default(null);
                        $table->timestamps();
         });
     }
