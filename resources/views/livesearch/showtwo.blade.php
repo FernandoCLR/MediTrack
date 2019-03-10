@@ -24,7 +24,7 @@
     @section('content')
         <h3> Medical Timeline </h3>
         
-          
+        
         
 @if(count($timeline)>0)
 
@@ -43,14 +43,20 @@
                 <div><h5>Hospital :{{$post->hospital}}</h5></div>
     </div>
        <div class="set"> <small ><a class="text-white" href="/live_search/history/{{$post->id}}/details">View in Detail...</a></small></div>
-       <div class="set"> <small ><a class="text-white" href="/live_search/history/{{$post->user_id}}/create" role="button">Add New</a> </small></div> 
+        
     </div>
     <br>
  
 </div>
+
 @endforeach
 @else
 <p> Sorry, No records found. </p>
 
+
+
+
+
 @endif
+
 @endsection

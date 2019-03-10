@@ -12,7 +12,8 @@
 <br>
 <div class="card bg-primary text-light">
     <h3> Create New Timeline Event </h3>
-    {!! Form::open(['action'=> ['LiveSearch@store',$timeline->id], 'method'=>'POST'])  !!}
+   
+    {!! Form::open(['action'=> ['LiveSearch@store',$timeline->id], 'method'=>'POST','enctype'=>'multipart/form-data'])  !!}
         <div class="form-group">
             {{Form::label('title','Title :')}}
             {{Form::text('title','',['class'=>'form-control col-md-6','placeholder'=>'Title'])}}
@@ -38,8 +39,17 @@
             {{Form::text('status','',['class'=>'form-control  col-md-6','placeholder'=>'Patient status'])}}
 
   </div>
+  <div class="form-group">
+        {{Form::label('file_title','File Title :')}}
+        {{Form::text('file_title','',['class'=>'form-control  col-md-6','placeholder'=>'Enter File Name'])}}
+      </div>
+      <div class="form-group">
+        {{Form::file('file_name')}}
+      </div>
            
             {{Form::submit('Save',['class'=>'btn btn-success'])}} 
     {!! Form::close() !!}  
+
+ 
 </div>
 @endsection

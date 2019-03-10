@@ -32,10 +32,15 @@
     <br>
     <h6>Patient status :</h6>
     <div>{{$timeline->status}}</div>
+    <h6>Attachments :</h6>
+    <div>{{$timeline->file_title}}</div>
+    <a class="btn btn-outline-primary" href="{{URL::asset('storage/file/'.$timeline->file_name)}}" download="{{$timeline->file_name}}" role="button">Download</a> 
 </div> 
 <br>
 <hr>
 <a class="btn btn-outline-primary" href="/live_search/history/{{$timeline->user_id}}" role="button">Back to Timeline</a> 
+@if(auth()->user()->access != 3)
 <a class="btn btn-outline-success" href="/live_search/history/{{$timeline->id}}/edit" role="button">Edit</a> 
+@endif 
 </div>
 @endsection

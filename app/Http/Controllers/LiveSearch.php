@@ -80,15 +80,17 @@ class LiveSearch extends Controller
     }
 
     public function show($id){
-      $user= Dash::find($id);
-      return view('livesearch.show')->with('user',$user);
+      $users= Dash::all()->where('user_id',$id);
+    //   dd($user);
+      return view('livesearch.show')->with('users',$users);
      
   }
       public function showtwo($id){
+     
         $timeline = Timeline::all()->where('user_id',$id); 
-        // dd($timeline);
         return view('livesearch.showtwo')->with('timeline',$timeline);
       
+    
     }
 
     public function details($id)
@@ -101,6 +103,7 @@ class LiveSearch extends Controller
     public function edit($id)
     {
         $timeline = Timeline::find($id);
+        
         return view('livesearch.edit')->with('timeline',$timeline); 
     }
 
@@ -118,8 +121,20 @@ class LiveSearch extends Controller
             'hospital' => 'required',
             'body' => 'required',
             'treatment' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'file_name'=> 'nullable|max:1999'
         ]);
+        if($request->hasFile('file_name')){
+            $filenameWithExt = $request->file('file_name')->getClientOriginalName();
+
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            
+            $extension = $request->file('file_name')->getClientOriginalExtension();
+        
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+        
+            $path = $request->file('file_name')->storeAs('public/file',$fileNameToStore);
+        }
 
         //creating new timline record
         $post = Timeline::find($id);
@@ -128,6 +143,10 @@ class LiveSearch extends Controller
         $post -> body = $request->input('body');
         $post -> treatment = $request->input('treatment');
         $post -> status = $request->input('status');
+        $post -> file_title = $request->input('file_title');
+        if($request->hasFile('file_name')){
+        $post -> file_name = $fileNameToStore;
+        }
         $post -> save();
 
         return redirect('/live_search')->with('success','Timeline Event Updated');
@@ -137,7 +156,8 @@ class LiveSearch extends Controller
     public function create($id)
     {
         
-        $timeline = Timeline::find($id);
+        $timeline = User::find($id);
+        // dd($timeline);
         return view('livesearch.create')->with('timeline',$timeline); 
 
     }
@@ -155,8 +175,23 @@ class LiveSearch extends Controller
             'hospital' => 'required',
             'body' => 'required',
             'treatment' => 'required', 
-            'status' => 'required'
+            'status' => 'required',
+            'file_name'=> 'nullable|max:1999'
         ]);
+
+        if($request->hasFile('file_name')){
+            $filenameWithExt = $request->file('file_name')->getClientOriginalName();
+
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            
+            $extension = $request->file('file_name')->getClientOriginalExtension();
+        
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+        
+            $path = $request->file('file_name')->storeAs('public/file',$fileNameToStore);
+        }else{
+            $fileNameToStore = 'No.pdf';
+        }
 
         //creating new timline record
         $post = new Timeline;
@@ -165,6 +200,8 @@ class LiveSearch extends Controller
         $post -> body = $request->input('body');
         $post -> treatment = $request->input('treatment');
         $post -> status = $request->input('status');
+        $post -> file_title = $request->input('file_title');
+        $post -> file_name = $fileNameToStore;
         $post -> user_id = $id;
         $post -> save();
 

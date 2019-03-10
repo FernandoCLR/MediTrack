@@ -7,8 +7,13 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
+                    @if(count($users)>0)
+                    @foreach($users as $user)
                     <div class="card-header bg-primary text-light"><h2>{{$user->first_name }}'s Basic Details</h2></div><br>
                     <a  class="btn btn-outline-primary" href="/live_search/history/{{$user->user_id}}" role="button">View {{$user->first_name }}'s Timeline</a><br>
+                    @if(auth()->user()->access != 3)
+                    <a  class="btn btn-outline-success" href="/live_search/history/{{$user->user_id}}/create" role="button">Add New Record {{$user->first_name }}'s Timeline</a><br> 
+                    @endif 
                     <div class="card mx-2">
                         <div class="card-header bg-primary text-light">Basic Information</div><br>
                     <ul>
@@ -49,11 +54,15 @@
                             </div>
                         </div>
                         <li><p>Description : {!!$user->description!!} </p></li>
+                        
                     </ul>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <a  class="btn btn-outline-primary" href="/live_search/history/{{$user->user_id}}" role="button">HISTORY..</a>
+    
+   @endforeach
+   @endif
+   
     @endsection

@@ -51,7 +51,10 @@
                     <li><a class="nav-item nav-link" href="/live_search">Meditarck Search</a></li>
                     @else 
                     @endif
-                         
+                    @if(auth()->user()->access == 3)
+                    <li><a class="nav-item nav-link" href="/live_search">Meditarck Search</a></li>
+                    @else 
+                    @endif     
                     @endif    
                     <li><a class="nav-item nav-link" href="#">Meditarck App</a></li>
                     <li><a class="nav-item nav-link" href="#">More About MediTrack</a></li>
