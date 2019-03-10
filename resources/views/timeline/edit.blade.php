@@ -16,7 +16,8 @@
     <div class="col"><h3>| {{$timeline->title}}</h3></div>
     </div>
     <hr>
-    {!! Form::open(['action'=> ['TimelineControler@update',$timeline->id], 'method'=>'POST']) !!}
+    {!! Form::open(['action'=> ['TimelineControler@update',$timeline->id], 'method'=>'POST', 'enctype'=>'multipart/form-data']) !!}
+   
         <div class="form-group">
             {{Form::label('title','Title :')}}
             {{Form::text('title',$timeline->title,['class'=>'form-control col-md-6','placeholder'=>'Title'])}}
@@ -42,9 +43,14 @@
             {{Form::text('status',$timeline->status,['class'=>'form-control  col-md-6','placeholder'=>'Patient status'])}}
 
       </div>
-
+      <div class="form-group">
+        {{Form::label('file_title','File Title :')}}
+        {{Form::text('file_title',$timeline->file_title,['class'=>'form-control  col-md-6','placeholder'=>'Enter File Name'])}}
+      </div>
+      <div class="form-group">
+        {{Form::file('file_name')}}
+      </div>
      
-        
 
            {{Form::hidden('_method','PUT')}}
             {{Form::submit('Save',['class'=>'btn btn-success'])}} 

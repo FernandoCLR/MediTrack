@@ -5,10 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Timeline;
 use App\User;
-use Input;
-use Validator;
-use Session;
-use Redirect;
+use Illuminate\Support\Facades\Storage;
 
 
 
@@ -53,8 +50,22 @@ class TimelineControler extends Controller
             'hospital' => 'required',
             'body' => 'required',
             'treatment' => 'required', 
-            'status' => 'required'
+            'status' => 'required',
+            'file_name'=> 'nullable|max:1999'
         ]);
+        if($request->hasFile('file_name')){
+            $filenameWithExt = $request->file('file_name')->getClientOriginalName();
+
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            
+            $extension = $request->file('file_name')->getClientOriginalExtension();
+        
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+        
+            $path = $request->file('file_name')->storeAs('public/file',$fileNameToStore);
+        }else{
+            $fileNameToStore = 'No.pdf';
+        }
 
         //creating new timline record
         $post = new Timeline;
@@ -65,7 +76,7 @@ class TimelineControler extends Controller
         $post -> status = $request->input('status');
         $post -> user_id = auth()->user()->id;
         $post -> file_title = $request->input('file_title');
-        $post -> file_name = $request->input('file_name');
+        $post -> file_name = $fileNameToStore;
         $post -> save();
 
 
@@ -85,6 +96,7 @@ class TimelineControler extends Controller
     {   
         $timeline = Timeline::find($id); 
         return view('timeline.show')->with('timeline',$timeline);
+        
        
     }
 
@@ -114,9 +126,22 @@ class TimelineControler extends Controller
             'hospital' => 'required',
             'body' => 'required',
             'treatment' => 'required',
-            'status' => 'required'
+            'status' => 'required',
+            'file_name'=> 'nullable|max:1999'
         ]);
 
+        if($request->hasFile('file_name')){
+            $filenameWithExt = $request->file('file_name')->getClientOriginalName();
+
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            
+            $extension = $request->file('file_name')->getClientOriginalExtension();
+        
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+        
+            $path = $request->file('file_name')->storeAs('public/file',$fileNameToStore);
+        }
+        
         //creating new timline record
         $post = Timeline::find($id);
         $post -> title = $request->input('title');
@@ -125,11 +150,13 @@ class TimelineControler extends Controller
         $post -> treatment = $request->input('treatment');
         $post -> status = $request->input('status');
         $post -> file_title = $request->input('file_title');
-        $post -> file_name = $request->input('file_name');
+        if($request->hasFile('file_name')){
+        $post -> file_name = $fileNameToStore;
+        }
         $post -> save();
 
         return redirect('/timeline')->with('success','Timeline Event Updated');
-
+       
     }
 
     /**
@@ -145,7 +172,7 @@ class TimelineControler extends Controller
         return redirect('/timeline')->with('success','Timeline Event Deleted');
     }
 
-
+    
     
 
 }

@@ -38,8 +38,15 @@
             {{Form::text('status','',['class'=>'form-control  col-md-6','placeholder'=>'Patient status'])}}
 
   </div>
+  <div class="form-group">
+    {{Form::label('file_title','File Title :')}}
+    {{Form::text('file_title','',['class'=>'form-control  col-md-6','placeholder'=>'Enter File Name'])}}
+  </div>
+  <div class="form-group">
+    {{Form::file('file_name')}}
+  </div>
            
-            {{Form::submit('Save',['class'=>'btn btn-success'])}} 
+     {{Form::submit('Save',['class'=>'btn btn-success'])}} 
     {!! Form::close() !!}  
 </div>
 @endsection
