@@ -12,7 +12,7 @@
 <br>
 <div class="card bg-primary text-light">
     <h3> Create New Timeline Event </h3>
-    {!! Form::open(['action'=> 'TimelineControler@store', 'method'=>'POST']) !!}
+    {!! Form::open(['action'=> 'TimelineControler@store', 'method'=>'POST','enctype'=>'multipart/form-data']) !!}
         <div class="form-group">
             {{Form::label('title','Title :')}}
             {{Form::text('title','',['class'=>'form-control col-md-6','placeholder'=>'Title'])}}

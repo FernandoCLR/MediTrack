@@ -35,7 +35,8 @@
     <br>
     <h6>Attachments :</h6>
     <div>{{$timeline->file_title}}</div>
-    <a class="btn btn-outline-primary" href="file/{{$timeline->file_name}}" download="{{$timeline->file_name}}"role="button">Download</a> 
+    <a class="btn btn-outline-primary" href="{{URL::asset('storage/file/'.$timeline->file_name)}}" download="{{$timeline->file_name}}" role="button">Download</a> 
+    
 </div> 
 <br>
 <hr>
