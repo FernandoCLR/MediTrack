@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Channel;
+use App\User;
 
 class HospitalController extends Controller
 {
@@ -26,7 +27,9 @@ class HospitalController extends Controller
      */
     public function create()
     {
-        return view('hospital.createh');
+        $userid=auth()->user()->id;
+        $username=User::find($userid);
+        return view('hospital.createh')->with('username',$username);
     }
 
     /**

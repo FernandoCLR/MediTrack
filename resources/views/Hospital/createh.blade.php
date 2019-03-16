@@ -17,7 +17,7 @@
       </div>
       <div class="form-group">
         {{Form::label('hospital','Enter Channeling Hospital :')}}
-        {{Form::text('hospital','',[ 'class'=>'form-control col-md-6','placeholder'=>'Channeling Hospital'])}}
+        {{Form::text('hospital',$username->name,[ 'class'=>'form-control col-md-6','placeholder'=>'Channeling Hospital'])}}
 
   </div>
         <div class="form-group">
