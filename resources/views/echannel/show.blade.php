@@ -38,10 +38,17 @@
                 <div class="row"><h5>Date of Appointment:&nbsp</h5>{!!$post->date!!}</div>
              
                 <div class="row"><h6>Time:&nbsp</h6>{!!$post->time!!}</div>
+
+                <div class="row"><h6>Payments:&nbsp</h6>@if($post->d_amount == null)
+                No payments 
+                @else 
+                Payments Done 
+                @endif 
+                </div>
                
                 @if($post->user_id==auth()->user()->id)
-                         <div>
-                                <a class="btn btn-primary float-right" href="/events" role="button">Create an Event</a>     
+            <div>  <a class="btn btn-success float-right" href="/payments/{{$post->id}}" role="button">Payment</a>
+                            <a class="btn btn-primary float-right" href="/events" role="button">Create an Event</a> 
                         {!!Form::open(['action'=>['EchannelingController@destroy',$post->id],'method'=>'POST'])!!}
                             {{Form::hidden('_method','DELETE')}}
                            {{Form::submit('Delete',['class'=>'btn btn-danger float-right'])}}

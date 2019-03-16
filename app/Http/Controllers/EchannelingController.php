@@ -78,4 +78,35 @@ class EchannelingController extends Controller
         return redirect('/echannel/show')->with('success','E channel Deleted');
     
     }
+    public function payments($id)
+    {
+        $payment=Echannel::find($id);
+        return view('echannel.payments')->with('payment',$payment);
+    
+    }
+
+    public function updateTwo(Request $request, $id)
+    {
+        $this -> validate ($request,[
+            'd_amount' => 'required',
+            'h_amount' => 'required',
+            't_amount' => 'required',
+            'e_date' => 'required'
+           
+        ]);
+
+    
+        
+        //creating new timline record
+        $post = Echannel::find($id);
+        $post -> d_amount = $request->input('d_amount');
+        $post -> h_amount = $request->input('h_amount');
+        $post -> t_amount = $request->input('t_amount');
+        $post -> e_date = $request->input('e_date');
+        $post -> save();
+
+        return redirect('/echannel/show')->with('success','Payment Done');;
+       
+    }
+
 }

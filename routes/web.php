@@ -23,6 +23,8 @@ Auth::routes(['verify' => true]);
 Route::resource('home','DashController')->middleware('verified');
 Route::resource('onlinehelp','onlineHelpController')->middleware('verified');
 Route::resource('echannel','EchannelingController')->middleware('verified');
+Route::get('payments/{id}','EchannelingController@payments')->middleware('verified');
+Route::put('echannel/{echannel}','EchannelingController@updateTwo')->middleware('verified');
 
 Route::get('events', 'EventController@index')->name('events.index')->middleware('verified');
 Route::post('events', 'EventController@addEvents')->name('events.add');

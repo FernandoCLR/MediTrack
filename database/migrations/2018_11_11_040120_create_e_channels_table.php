@@ -24,6 +24,7 @@ class CreateEChannelsTable extends Migration
             $table->integer('d_amount')->nullable()->default(null);
             $table->integer('h_amount')->nullable()->default(null);
             $table->integer('t_amount')->nullable()->default(null);
+            $table->date('e_date')->nullable()->default(null);
             $table->timestamps();
         });
     }
