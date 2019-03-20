@@ -1,14 +1,23 @@
 
     @extends('layouts.app')
+<style>
+   .ali{
+    padding-left: 2cm;
+    padding-right: 2cm;
+   }
+</style>
     
     @section('content')
-        <h2> Online Help </h2>
-        <a class="btn btn-outline-primary float-right" href="/onlinehelp/create" role="button">Ask New Question</a>
+    <br><br>
+    <div class="card mx-5 w-80">
+            <div class="card-header bg-primary text-light text-center"><h2> Online Help </h2></div><br>
+        <a class="btn btn-outline-primary float-right" href="/onlinehelp/create" role="button">Ask New Question</a><br>
+       <div class="ali">
         @if(count($help)>0)
         @foreach($help as $post)
         <div class="form-group">
-        <div class="card w-75 bg-primary text-white">
-            <div class="card  bg-dark text-white mess ">
+        <div class="card  bg-primary text-white">
+            <div class="card  bg-dark text-white  ">
              <div class="row"> 
                <div class="col"><h4>{{$post->title}}</h4></div>
                <div class="col "><small>Written on :{{$post->created_at}} by {{$post->user->name}}</small></div>
@@ -51,6 +60,9 @@
         <p> Sorry, No records found. </p>
 
     @endif
+       </div>
+    </div>
+    </div>
     @endsection
     
     

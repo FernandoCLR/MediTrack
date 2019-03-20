@@ -3,9 +3,12 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   
     @section('content')
+    <br>
     <div class="container box">
-        <h3 >Meditrack Search</h3><br />
+        <div class="card">
+        <div class="card-header bg-primary text-light "><h3 >Meditrack Search</h3></div>
         <div class="panel panel-default">
+            <br>
          <div class="panel-heading">Search</div>
          <div class="panel-body">
           <div class="form-group">
@@ -25,6 +28,7 @@
               <th>NIC</th>
               <th>Bood Group</th>
               <th>Mobile Number</th>
+              <th>More</th>
              </tr>
             
             </thead>
@@ -34,6 +38,7 @@
            </table>
           </div>
          </div>    
+        </div>
         </div>
        </div>
 

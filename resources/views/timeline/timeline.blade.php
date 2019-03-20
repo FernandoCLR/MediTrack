@@ -5,7 +5,7 @@
 padding-left: 5cm;
 }
 .mess{
-    padding-left: 40px;
+    padding-left: 20px;
     padding-top: 10px;
     padding-right: 20px;
 }
@@ -22,12 +22,15 @@ padding-left: 5cm;
 @extends('layouts.app')
 
 @section('content')
-    <h3> Medical Timeline </h3>
+<br><br>
+<div class="card mx-5">
+        <div class="card-header bg-primary text-light"><h3> Medical Timeline </h3></div><br>
     @if(auth()->user()->access == 1)
     <a class="btn btn-outline-primary float-right" href="/timeline/create" role="button">Add New</a>
     @else 
       <h6>User view</h6>
       @endif 
+      <br>
         @if(count($timeline)>0)
                 @foreach($timeline as $post)
                 <div class="form-group">
@@ -53,6 +56,6 @@ padding-left: 5cm;
                 <p> Sorry, No records found. </p>
 
             @endif
-
+</div>
 @endsection
 

@@ -12,7 +12,7 @@
    
     
     </head>
-    <body>
+    <body background="img\BackGround.jpg">
         @include('inc.navbar')
         <div>
             @include('inc.message')

@@ -2,6 +2,9 @@
 
 @section('content')
 <br>
+<div class="card mx-5">
+
+<div class="card-header bg-primary text-light"><h3>MediTrack Hospital Channel</h3></div><br>
 <a class="btn btn-outline-primary float-right" href="/hospital/create" role="button">Add New Channel</a>
 <br>
 
@@ -34,8 +37,9 @@
       </tr>
     @endforeach
 </table>
+<br>
 @endif 
 
 
-
+</div>
 @endsection

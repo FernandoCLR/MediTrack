@@ -3,11 +3,11 @@
 
 
 @section('content')
-    <h3> Create Your Appoinment. </h3>
-    
-    <br />
-  <div class="container box">
-   <h3 >MediTrack Channeling System</h3><br />
+<br><br>
+<div class="container box">  
+<div class="card mx-5">
+  
+      <div class="card-header bg-primary text-light"><h3 >MediTrack Channeling System</h3></div><br />
    {!! Form::open(['action'=> 'EchannelingController@store', 'method'=>'POST']) !!}
    <div class="form-group">
     <select name="hospital" id="hospital" class="form-control input-lg dynamic" data-dependent="area">
@@ -43,10 +43,12 @@
    </div>
    {{ csrf_field() }}
    <br />
-  </div>
+  
   {{Form::submit('Channel',['class'=>'btn btn-success'])}} 
   {!! Form::close() !!} 
   <a class="btn btn-outline-primary float-right" href="/echannel/show" role="button">E Channel Dashboard</a>
+  </div>
+</div>
   <script>
     $(document).ready(function(){
     
