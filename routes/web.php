@@ -28,6 +28,10 @@ Route::put('echannel/{echannel}','EchannelingController@updateTwo')->middleware(
 
 Route::get('events', 'EventController@index')->name('events.index')->middleware('verified');
 Route::post('events', 'EventController@addEvents')->name('events.add');
+Route::get('events/show','EventController@show');
+Route::get('events/{user}/edit','EventController@edit');
+Route::delete('event/{user}','EventController@destroy');
+Route::put('events/{user}/update','EventController@update');
 
 Route::get('/live_search', 'LiveSearch@index')->middleware('verified');
 Route::get('/live_search/action', 'LiveSearch@action')->name('live_search.action');

@@ -21,14 +21,7 @@
  
                    {!! Form::open(array('route' => 'events.add','method'=>'POST','files'=>'true')) !!}
                     <div class="row">
-                       <div class="col-xs-12 col-sm-12 col-md-12">
-                          @if (Session::has('success'))
-                             <div class="alert alert-success">{{ Session::get('success') }}</div>
-                          @elseif (Session::has('warnning'))
-                              <div class="alert alert-danger">{{ Session::get('warnning') }}</div>
-                          @endif
- 
-                      </div>
+                      
  
                       <div class="col-xs-4 col-sm-4 col-md-4">
                         <div class="form-group">
@@ -66,6 +59,7 @@
  
                       <div class="text-center col-xs-1 col-sm-1 col-md-1 "> &nbsp;<br/>
                       {!! Form::submit('Add Event',['class'=>'btn btn-primary ']) !!}
+                      <a class="btn btn-outline-success" href="events/show" role="button">More</a> 
                       </div>
                     </div>
                    {!! Form::close() !!}

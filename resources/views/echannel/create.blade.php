@@ -58,25 +58,8 @@
     
      $('#hospital').change(function(){
       $('#area').val('');
-      $('#d_name').val('');
-      $('#date').val('');
-      $('#time').val('');
      });
     
-     $('#area').change(function(){
-      $('#d_name').val('');
-      $('#date').val('');
-      $('#time').val('');
-     });
-     
-     $('#d_name').change(function(){
-      $('#date').val('');
-      $('#time').val('');
-     });
-
-     $('#date').change(function(){
-      $('#time').val('');
-     });
     
     });
     </script>   

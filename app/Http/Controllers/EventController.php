@@ -10,6 +10,7 @@ use Calendar;
 use Auth;
 use Validator;
 use App\Event;
+use App\User;
  
 
 class EventController extends Controller
@@ -52,5 +53,41 @@ class EventController extends Controller
  
         \Session::flash('success','Event added successfully.');
         return Redirect::to('/events');
+    }
+
+    public function show()
+    {
+        $user=auth()->user()->id;
+        $events=Event::all()->where('user_id',$user);
+        return view ('eventcontroller.show')-> with('events',$events);
+    }
+    public function edit($id)
+    {
+        $editit=Event::find($id);
+        return view ('eventcontroller.edit')->with('editit',$editit);
+    }
+    public function update(Request $request, $id)
+    {
+        $this -> validate ($request,[
+            'event_name' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required'
+           
+        ]);
+
+        // update timeline record 
+        $post = Event::find($id);
+        $post -> event_name = $request->input('event_name');
+        $post -> start_date = $request->input('start_date');
+        $post -> end_date = $request->input('end_date');
+        $post -> save();
+
+        return redirect('/events')->with('success','Event Successfully Updated ');
+    }
+    public function destroy($id)
+    {
+        $post = Event::find($id);
+        $post -> delete();
+        return redirect('/events')->with('success',' Event Deleted');
     }
 }
