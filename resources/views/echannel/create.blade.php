@@ -8,9 +8,9 @@
 <div class="card mx-5">
   
       <div class="card-header bg-primary text-light"><h3 >MediTrack Channeling System</h3></div><br />
-   {!! Form::open(['action'=> 'EchannelingController@store', 'method'=>'POST']) !!}
+   {!! Form::open(['action'=> 'EchannelingController@search', 'method'=>'POST']) !!}
    <div class="form-group">
-    <select name="hospital" id="hospital" class="form-control input-lg dynamic" data-dependent="area">
+    <select name="hospital" id="hospital" class="form-control input-lg dynamic" data-dependent='area' data-dependent='d_name'>
      <option value="">Select hospital:</option>
      @foreach($hospital_list as $hospital)
      <option value="{{ $hospital->hospital}}">{{ $hospital->hospital }}</option>
@@ -24,23 +24,7 @@
     </select>
    </div>
    <br/>
-   <div class="form-group">
-      <select name="d_name" id="d_name" class="form-control input-lg dynamic" data-dependent="date">
-       <option value="">Select Doctor Name:</option>
-      </select>
-     </div>
-     <br />
-   <div class="form-group">
-    <select name="date" id="date" class="form-control input-lg dynamic" data-dependent="time">
-     <option value="">Select Date:</option>
-    </select>
-   </div>
-   <br/>
-   <div class="form-group">
-    <select name="time" id="time" class="form-control input-lg " >
-     <option value="">Select Avalabel Time:</option>
-    </select>
-   </div>
+
    {{ csrf_field() }}
    <br />
   

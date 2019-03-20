@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Channel;
 use App\User;
-
+use App\EChannel;
 class HospitalController extends Controller
 {
     /**
@@ -71,7 +71,10 @@ class HospitalController extends Controller
      */
     public function show($id)
     {
-      
+        
+        $userid=auth()->user()->name;
+        $username=EChannel::all()->where('hospital',$userid);
+        return view('hospital.show')->with('username',$username);
     }
 
     /**

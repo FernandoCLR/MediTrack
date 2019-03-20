@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\EChannel;
+use App\Channel;
 use App\User;
 
 class EchannelingController extends Controller
@@ -35,6 +36,25 @@ class EchannelingController extends Controller
      echo $output;
     }
 
+    public function search(Request $request)
+    {
+        $this -> validate ($request,[
+            'hospital' => 'required',
+            'area' => 'required'
+        ]);
+        $hospital=$request->get('hospital');
+        $area=$request->get('area');
+        $result=Channel::all()->where('hospital',$hospital)->where('area',$area);
+        
+        
+        return view('echannel.search')->with('result',$result);
+    }
+    public function searchtwo($id)
+    {
+        $output=Channel::find($id);
+        return view('echannel.searchtwo')->with('output',$output);
+    }
+
     public function store(Request $request)
     {
         $this -> validate ($request,[
@@ -53,6 +73,7 @@ class EchannelingController extends Controller
         $post -> date = $request->input('date');
         $post -> time = $request->input('time');
         $post -> user_id = auth()->user()->id;
+        $post -> user_name = auth()->user()->name;
         $post -> save();
 
 

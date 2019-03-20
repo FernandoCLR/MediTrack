@@ -40,6 +40,7 @@
                       <li><a class="nav-item nav-link" href="/home">Dashboard </a></li>
                       <li><a class="nav-item nav-link" href="/hospital">Channel Dash</a></li>
                       <li><a class="nav-item nav-link" href="/live_search">Meditarck Search</a></li>
+                      <li><a class="nav-item nav-link" href="/hospital/{hospital}">User Channels</a></li>
                       @else
                     <li><a class="nav-item nav-link" href="/home">Dashboard </a></li>
                     <li><a class="nav-item nav-link" href="/timeline">My Timeline</a></li>
