@@ -28,24 +28,24 @@ Route::put('echannel/{echannel}','EchannelingController@updateTwo')->middleware(
 
 Route::get('events', 'EventController@index')->name('events.index')->middleware('verified');
 Route::post('events', 'EventController@addEvents')->name('events.add');
-Route::get('events/show','EventController@show');
-Route::get('events/{user}/edit','EventController@edit');
-Route::delete('event/{user}','EventController@destroy');
-Route::put('events/{user}/update','EventController@update');
+Route::get('events/show','EventController@show')->middleware('verified');
+Route::get('events/{user}/edit','EventController@edit')->middleware('verified');
+Route::delete('event/{user}','EventController@destroy')->middleware('verified');
+Route::put('events/{user}/update','EventController@update')->middleware('verified');
 
 Route::get('/live_search', 'LiveSearch@index')->middleware('verified');
 Route::get('/live_search/action', 'LiveSearch@action')->name('live_search.action');
-Route::get('/live_search/{row}','LiveSearch@show');
-Route::get('/live_search/history/{user}','LiveSearch@showtwo');
-Route::get('/live_search/history/{user}/details','LiveSearch@details');
-Route::get('/live_search/history/{user}/edit','LiveSearch@edit');
-Route::put('/live_search/history/{user}/update','LiveSearch@update');
-Route::post('/live_search/history/{user}/store','LiveSearch@store');
-Route::get('/live_search/history/{user}/create','LiveSearch@create');
+Route::get('/live_search/{row}','LiveSearch@show')->middleware('verified');
+Route::get('/live_search/history/{user}','LiveSearch@showtwo')->middleware('verified');
+Route::get('/live_search/history/{user}/details','LiveSearch@details')->middleware('verified');
+Route::get('/live_search/history/{user}/edit','LiveSearch@edit')->middleware('verified');
+Route::put('/live_search/history/{user}/update','LiveSearch@update')->middleware('verified');
+Route::post('/live_search/history/{user}/store','LiveSearch@store')->middleware('verified');
+Route::get('/live_search/history/{user}/create','LiveSearch@create')->middleware('verified');
 
 
 Route::get('echannel/create', 'EchannelingController@index')->middleware('verified');
 Route::post('echannel/create/fetch', 'EchannelingController@fetch')->name('echannel.create.fetch');
-Route::post('echannel/create/search', 'EchannelingController@search');
-Route::get('echannel/create/search/conf/{user}','EchannelingController@searchtwo');
+Route::post('echannel/create/search', 'EchannelingController@search')->middleware('verified');
+Route::get('echannel/create/search/conf/{user}','EchannelingController@searchtwo')->middleware('verified');
 Route::resource('hospital','HospitalController')->middleware('verified');
