@@ -56,6 +56,8 @@ padding-left: 5cm;
                 <p> Sorry, No records found. </p>
 
             @endif
+            
 </div>
+{{$timeline->links()}}
 @endsection
 
