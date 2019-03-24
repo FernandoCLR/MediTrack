@@ -10,9 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'PagesController@welcome');
 Route::get('/registration', 'PagesController@registration');
+
+Route::group(['middleware' => 'revalidate'], function()
+{
+
 Route::get('/dashboard', 'PagesController@dashboard');
 
 Route::resource('timeline','TimelineControler')->middleware('verified');
@@ -50,3 +53,4 @@ Route::post('echannel/create/fetch', 'EchannelingController@fetch')->name('echan
 Route::post('echannel/create/search', 'EchannelingController@search')->middleware('verified');
 Route::get('echannel/create/search/conf/{user}','EchannelingController@searchtwo')->middleware('verified');
 Route::resource('hospital','HospitalController')->middleware('verified');
+});
