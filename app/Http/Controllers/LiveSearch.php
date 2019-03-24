@@ -87,7 +87,7 @@ class LiveSearch extends Controller
   }
       public function showtwo($id){
      
-        $timeline = Timeline::all()->where('user_id',$id); 
+        $timeline = Timeline::orderBy('created_at','desc')->where('user_id',$id)->paginate(10); 
         return view('livesearch.showtwo')->with('timeline',$timeline);
       
     

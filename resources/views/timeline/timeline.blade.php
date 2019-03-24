@@ -15,6 +15,9 @@ padding-left: 5cm;
 .set{
    padding-left: 15cm;
 }
+.spc{
+    padding-left: 1cm;
+}
 </style>
 
 </head>
@@ -39,7 +42,7 @@ padding-left: 5cm;
                     
                        <div class="row"> 
                        <div class="col"><h4>{{$post->title}}</h4></div>
-                       <div class="col "><small>Written on :{{$post->created_at}} by {{$post->user->name}}</small></div>
+                       <div class="col "><small>Written on :{{$post->created_at}} Own by {{$post->user->name}}</small></div>
                                
                                 
                                 
@@ -58,6 +61,7 @@ padding-left: 5cm;
             @endif
             
 </div>
-{{$timeline->links()}}
+<br>
+<div class="spc">{{$timeline->links()}}</div>
 @endsection
 

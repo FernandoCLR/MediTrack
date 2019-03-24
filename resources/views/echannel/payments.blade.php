@@ -22,7 +22,7 @@
                     {{Form::date('e_date','',[ 'class'=>'form-control col-md-6','placeholder'=>'Expiry Date'])}}
 
             </div>
-                {{Form::submit('Save',['class'=>'btn btn-success'])}} 
+                {{Form::submit('Pay',['class'=>'btn btn-success'])}} 
             {!! Form::close() !!}  
 
 

@@ -14,7 +14,7 @@ class onlineHelpController extends Controller
      */
     public function index()
     {
-        $help=OnlineHelp::all();
+        $help=OnlineHelp::orderBy('created_at','desc')->paginate(10);
         return view('onlinehelp.help')->with('help',$help);
     }
 

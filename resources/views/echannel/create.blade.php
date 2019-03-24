@@ -28,7 +28,7 @@
    {{ csrf_field() }}
    <br />
   
-  {{Form::submit('Channel',['class'=>'btn btn-success'])}} 
+  {{Form::submit('Search',['class'=>'btn btn-success'])}} 
   {!! Form::close() !!} 
   <a class="btn btn-outline-primary float-right" href="/echannel/show" role="button">E Channel Dashboard</a>
   </div>
