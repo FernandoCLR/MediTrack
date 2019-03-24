@@ -1,77 +1,25 @@
 
     @extends('layouts.app')
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    
   
     @section('content')
     <br>
     <div class="container box">
         <div class="card">
         <div class="card-header bg-primary text-light "><h3 >Meditrack Search</h3></div>
-        <div class="panel panel-default">
-            <br>
-         <div class="panel-heading">Search</div>
-         <div class="panel-body">
-          <div class="form-group">
-           <input type="text" name="search" id="search" class="form-control" placeholder="Search Customer Data *NIC Number Would Preferable" />
-          </div>
-          <div class="table-responsive">
-           <h3>Total Record Count : <span id="total_records"></span></h3>
-           <table class="table table-striped table-bordered " >
-            <thead>
-            
-             <tr>
-              <th>First Name</th>
-              <th>Second Name</th>
-              <th>Last Name</th>
-              <th>Address</th>
-              <th>Email</th>
-              <th>NIC</th>
-              <th>Bood Group</th>
-              <th>Mobile Number</th>
-              <th>More</th>
-             </tr>
-            
-            </thead>
-            <tbody>
-     
-            </tbody>
-           </table>
-          </div>
-         </div>    
-        </div>
-        </div>
-       </div>
+        {!! Form::open(['action'=> 'LiveSearch@action', 'method'=>'POST']) !!}
+        <div class="form-group">
+            {{Form::label('titlelabel','National Identity Card Number :')}}
+            {{Form::text('nic','',['class'=>'form-control col-md-6','placeholder'=>'nic', 'required'])}}
 
+        </div>
+        {{Form::submit('Search',['class'=>'btn btn-success'])}} 
+        {!! Form::close() !!}
+        </div>
+    </div>
 
 
     @endsection
 
-    <script>
-        $(document).ready(function(){
-        
-         fetch_customer_data();
-        
-         function fetch_customer_data(query = '')
-         {
-          $.ajax({
-           url:"{{ route('live_search.action') }}",
-           method:'GET',
-           data:{query:query},
-           dataType:'json',
-           success:function(data)
-           {
-            $('tbody').html(data.table_data);
-            $('#total_records').text(data.total_data);
-           }
-          })
-         }
-            $(document).on('keyup', '#search', function(){
-                var query = $(this).val();
-                fetch_customer_data(query);
-                    });
-        
-        });
-
-        
-        </script>
+    
         

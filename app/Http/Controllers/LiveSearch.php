@@ -18,65 +18,13 @@ class LiveSearch extends Controller
 
     function action(Request $request)
     {
-     if($request->ajax())
-     {
-      $output = '';
-      $query = $request->get('query');
-      if($query != '')
-      {
-       $data = DB::table('dashes')
-         ->where('first_name', 'like', '%'.$query.'%')
-         ->orWhere('second_name', 'like', '%'.$query.'%')
-         ->orWhere('last_name', 'like', '%'.$query.'%')
-         ->orWhere('email', 'like', '%'.$query.'%')
-         ->orWhere('address', 'like', '%'.$query.'%')
-         ->orWhere('nic', 'like', '%'.$query.'%')
-         ->orWhere('b_grp', 'like', '%'.$query.'%')
-         ->orderBy('id', 'desc')
-         ->get();
-         
-      }
-      else
-      {
-       $data = DB::table('dashes')
-         ->orderBy('id', 'desc')
-         ->get();
-      }
-      $total_row = $data->count();
-      if($total_row > 0)
-      {
-       foreach($data as $row)
-       {
-        $output .= '
-        <tr >
-         <td>'.$row->first_name.'</td>
-         <td>'.$row->second_name.'</td>
-         <td>'.$row->last_name.'</td>
-         <td>'.$row->address.'</td>
-         <td>'.$row->email.'</td>
-         <td>'.$row->nic.'</td>
-         <td>'.$row->b_grp.'</td>
-         <td>'.$row->m_tp_no.'</td>
-         <td><a href="/live_search/'.$row->user_id.'">View More..</a></td>
-        </tr>
-        ';
-       }
-      }
-      else
-      {
-       $output = '
-       <tr>
-        <td align="center" colspan="5">No Data Found</td>
-       </tr>
-       ';
-      }
-      $data = array(
-       'table_data'  => $output,
-       'total_data'  => $total_row
-      );
-
-      echo json_encode($data);
-     }
+        $this -> validate ($request,[
+            'nic' => 'required',
+            
+        ]);
+        $nic=$request->get('nic');
+        $result=Dash::all()->where('nic',$nic);
+        return view('livesearch.searchre')->with('result',$result);
     }
 
     public function show($id){
@@ -149,7 +97,7 @@ class LiveSearch extends Controller
         }
         $post -> save();
 
-        return redirect('/live_search')->with('success','Timeline Event Updated');
+        return redirect('/live_search/history/'.$id)->with('success','Timeline Event Updated');
 
     }
 
@@ -207,8 +155,14 @@ class LiveSearch extends Controller
 
 
        
-        return redirect('/live_search')->with('success','Timeline Event Added');
+        return redirect('/live_search/history/'.$id)->with('success','Timeline Event Added');
        
 
+    }
+    public function destroy($id)
+    {
+        $post = Timeline::find($id);
+        $post -> delete();
+        return redirect('/live_search')->with('success','Timeline Event Deleted');
     }
 }

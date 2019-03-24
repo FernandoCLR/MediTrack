@@ -39,8 +39,17 @@
 <br>
 <hr>
 <a class="btn btn-outline-primary" href="/live_search/history/{{$timeline->user_id}}" role="button">Back to Timeline</a> 
+@if(strtotime($timeline->created_at) > strtotime("-1440 minutes"))
 @if(auth()->user()->access != 3)
 <a class="btn btn-outline-success" href="/live_search/history/{{$timeline->id}}/edit" role="button">Edit</a> 
+{!!Form::open(['action'=>['LiveSearch@destroy',$timeline->id],'method'=>'POST','class'=>'float-right'])!!}
+    {{Form::hidden('_method','DELETE')}}
+    {{Form::submit('Delete',['class'=>'btn btn-danger '])}}
+
+{!!Form::close()!!}
 @endif 
+@else 
+<p> This Record has exceeded 1day edit and delete allowance</p>
+@endif
 </div>
 @endsection

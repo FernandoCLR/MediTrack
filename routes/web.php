@@ -34,7 +34,8 @@ Route::delete('event/{user}','EventController@destroy')->middleware('verified');
 Route::put('events/{user}/update','EventController@update')->middleware('verified');
 
 Route::get('/live_search', 'LiveSearch@index')->middleware('verified');
-Route::get('/live_search/action', 'LiveSearch@action')->name('live_search.action');
+Route::post('/live_search/action', 'LiveSearch@action')->middleware('verified');
+Route::delete('/live_search/{user}', 'LiveSearch@destroy')->middleware('verified');
 Route::get('/live_search/{row}','LiveSearch@show')->middleware('verified');
 Route::get('/live_search/history/{user}','LiveSearch@showtwo')->middleware('verified');
 Route::get('/live_search/history/{user}/details','LiveSearch@details')->middleware('verified');

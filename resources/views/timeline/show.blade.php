@@ -41,6 +41,7 @@
 <br>
 <hr>
 <a class="btn btn-outline-primary" href="/timeline" role="button">Back to Timeline</a> 
+@if(strtotime($timeline->created_at) > strtotime("-1440 minutes"))
 @if(auth()->user()->access == 1)
 <a class="btn btn-outline-success" href="/timeline/{{$timeline->id}}/edit" role="button">Edit</a> 
 
@@ -50,6 +51,9 @@
 
 {!!Form::close()!!}
 @else 
+@endif
+@else 
+<p> This Record has exceeded 1day edit and delete allowance</p>
 @endif
 </div>
 @endsection
