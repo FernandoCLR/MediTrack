@@ -22,6 +22,8 @@ Route::resource('timeline','TimelineControler')->middleware('verified');
 
 
 Auth::routes(['verify' => true]);
+Route::get('download','DownloadController@index')->middleware('verified');
+Route::get('aboutus','AboutUsController@index')->middleware('verified');
 
 Route::resource('home','DashController')->middleware('verified');
 Route::resource('onlinehelp','onlineHelpController')->middleware('verified');

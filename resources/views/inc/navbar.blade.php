@@ -57,8 +57,8 @@
                     @else 
                     @endif     
                     @endif    
-                    <li><a class="nav-item nav-link" href="#">Meditarck App</a></li>
-                    <li><a class="nav-item nav-link" href="#">More About MediTrack</a></li>
+                    <li><a class="nav-item nav-link" href="/download">Meditarck App</a></li>
+                    <li><a class="nav-item nav-link" href="/aboutus">More About MediTrack</a></li>
                   
 
                     <li class="nav-item dropdown med2">
