@@ -9,17 +9,17 @@
     {!! Form::open(['action'=> ['EventController@update',$editit->id], 'method'=>'POST']) !!}
     <div class="form-group">
             {{Form::label('event_name','Event Name :')}}
-            {{Form::text('event_name',$editit->event_name,['class'=>'form-control col-md-6','placeholder'=>'Event Name'])}}
+            {{Form::text('event_name',$editit->event_name,['class'=>'form-control col-md-6','placeholder'=>'Event Name', 'required'])}}
 
         </div>
         <div class="form-group">
             {{Form::label('start_date','Start Date:')}}
-            {{Form::date('start_date',$editit->start_date,[ 'class'=>'form-control col-md-6','placeholder'=>'Start Date'])}}
+            {{Form::date('start_date',$editit->start_date,[ 'class'=>'form-control col-md-6','placeholder'=>'Start Date', 'required'])}}
 
       </div>
       <div class="form-group">
         {{Form::label('end_date','End Date :')}}
-        {{Form::date('end_date',$editit->end_date,[ 'class'=>'form-control col-md-6','placeholder'=>'End Date'])}}
+        {{Form::date('end_date',$editit->end_date,[ 'class'=>'form-control col-md-6','placeholder'=>'End Date', 'required'])}}
 
   </div>
         

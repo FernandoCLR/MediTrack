@@ -16,27 +16,27 @@
     {!! Form::open(['action'=> ['LiveSearch@store',$timeline->id], 'method'=>'POST','enctype'=>'multipart/form-data'])  !!}
         <div class="form-group">
             {{Form::label('title','Title :')}}
-            {{Form::text('title','',['class'=>'form-control col-md-6','placeholder'=>'Title'])}}
+            {{Form::text('title','',['class'=>'form-control col-md-6','placeholder'=>'Title', 'required'])}}
 
         </div>
         <div class="form-group">
                 {{Form::label('hospital','Hospital :')}}
-                {{Form::text('hospital','',[ 'class'=>'form-control col-md-6','placeholder'=>'Hospital'])}}
+                {{Form::text('hospital','',[ 'class'=>'form-control col-md-6','placeholder'=>'Hospital', 'required'])}}
     
           </div>
          <div class="form-group">
                     {{Form::label('body','Description :')}}
-                    {{Form::textarea('body','',[ 'id'=>'article-ckeditor','class'=>'form-control ','placeholder'=>'Description'])}}
+                    {{Form::textarea('body','',[ 'id'=>'article-ckeditor','class'=>'form-control ','placeholder'=>'Description', 'required'])}}
         
           </div>
           <div class="form-group">
                 {{Form::label('treatment','Treatment :')}}
-                {{Form::textarea('treatment','',[ 'id'=>'article-ckeditor2','class'=>'form-control ','placeholder'=>'Treatment'])}}
+                {{Form::textarea('treatment','',[ 'id'=>'article-ckeditor2','class'=>'form-control ','placeholder'=>'Treatment', 'required'])}}
     
       </div>
       <div class="form-group">
             {{Form::label('status','Patient status :')}}
-            {{Form::text('status','',['class'=>'form-control  col-md-6','placeholder'=>'Patient status'])}}
+            {{Form::text('status','',['class'=>'form-control  col-md-6','placeholder'=>'Patient status', 'required'])}}
 
   </div>
   <div class="form-group">

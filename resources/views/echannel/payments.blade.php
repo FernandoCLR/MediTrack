@@ -9,17 +9,17 @@
             </div>
             <div class="form-group">
                 {{Form::label('h_amount','Debit/Credit Card Number:')}}
-                {{Form::text('h_amount','',[ 'class'=>'form-control col-md-6','placeholder'=>'Card Number'])}}
+                {{Form::text('h_amount','',[ 'class'=>'form-control col-md-6','placeholder'=>'Card Number', 'required'])}}
 
             </div>
             <div class="form-group">
             {{Form::label('t_amount',' Secret Number :')}}
-            {{Form::text('t_amount','',[ 'class'=>'form-control col-md-3','placeholder'=>'S Number'])}}
+            {{Form::text('t_amount','',[ 'class'=>'form-control col-md-3','placeholder'=>'S Number', 'required'])}}
 
             </div>
             <div class="form-group">
                     {{Form::label('e_date','Expiry Date:')}}
-                    {{Form::date('e_date','',[ 'class'=>'form-control col-md-6','placeholder'=>'Expiry Date'])}}
+                    {{Form::date('e_date','',[ 'class'=>'form-control col-md-6','placeholder'=>'Expiry Date', 'required'])}}
 
             </div>
                 {{Form::submit('Pay',['class'=>'btn btn-success'])}} 
