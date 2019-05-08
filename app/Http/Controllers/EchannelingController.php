@@ -86,7 +86,7 @@ class EchannelingController extends Controller
     public function show($id)
     {   
         $user_id=auth()->user()->id;
-        $echannel = EChannel::all()->where('user_id',$user_id); 
+        $echannel = EChannel::orderBy('created_at','desc')->where('user_id',$user_id)->paginate(10); 
         return view('echannel.show')->with('echannel',$echannel);
        
     }

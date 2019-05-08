@@ -25,6 +25,7 @@ class TimelineControler extends Controller
         $timeline=Timeline::orderBy('created_at','desc')->where('user_id',$user_id)->paginate(10);
         return view('timeline.timeline')->with('timeline',$timeline);
        
+        
     }
 
     /**
