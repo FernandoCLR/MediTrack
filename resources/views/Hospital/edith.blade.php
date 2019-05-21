@@ -1,9 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<br>
 <div class="card bg-primary text-light">
         <div class="row">
-        <div class="col-ms-4"><h3> Edit Channel</h3></div>
+        <div class="col"><h3> Edit Channel</h3></div>
         </div>
         <hr>
         {!! Form::open(['action'=> ['HospitalController@update',$editit->id], 'method'=>'POST']) !!}
