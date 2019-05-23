@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Channel;
 use App\User;
 use App\EChannel;
+use App\Dash;
 class HospitalController extends Controller
 {
     /**
@@ -15,9 +16,17 @@ class HospitalController extends Controller
      */
     public function index()
     {
-        $userid = $user_id=auth()->user()->id;
-        $mas = Channel::all()->where('user_id',$userid); 
-        return view('hospital.indexh')->with('mas',$mas);
+        if(auth()->user()->access==2){
+            $userid = $user_id=auth()->user()->id;
+            $mas = Channel::all()->where('user_id',$userid); 
+            return view('hospital.indexh')->with('mas',$mas);  
+         }else{
+        
+
+        $user_id=auth()->user()->id;
+            $dashes=Dash::all()->where('user_id',$user_id);
+            return view('dash.home')->with('dashes',$dashes); 
+         }
     }
 
     /**
@@ -71,10 +80,18 @@ class HospitalController extends Controller
      */
     public function show($id)
     {
-        
+        if(auth()->user()->access==2  ){
+            
         $userid=auth()->user()->name;
         $username=EChannel::all()->where('hospital',$userid);
         return view('hospital.show')->with('username',$username);
+         }else{
+        
+
+        $user_id=auth()->user()->id;
+            $dashes=Dash::all()->where('user_id',$user_id);
+            return view('dash.home')->with('dashes',$dashes);  
+         }
     }
 
     /**

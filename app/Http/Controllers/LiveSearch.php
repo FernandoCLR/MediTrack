@@ -13,7 +13,13 @@ class LiveSearch extends Controller
 {
     function index()
     {
-     return view('livesearch.live_search');
+     if(auth()->user()->access==null){
+        $user_id=auth()->user()->id;
+        $dashes=Dash::all()->where('user_id',$user_id);
+        return view('dash.home')->with('dashes',$dashes); 
+     }else{
+        return view('livesearch.live_search');
+     }
     }
 
     function action(Request $request)
