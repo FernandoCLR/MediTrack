@@ -18,7 +18,7 @@ class HospitalController extends Controller
     {
         if(auth()->user()->access==2){
             $userid = $user_id=auth()->user()->id;
-            $mas = Channel::all()->where('user_id',$userid); 
+            $mas = Channel::orderBy('created_at','desc')->where('user_id',$user_id)->paginate(10); 
             return view('hospital.indexh')->with('mas',$mas);  
          }else{
         
@@ -83,7 +83,8 @@ class HospitalController extends Controller
         if(auth()->user()->access==2  ){
             
         $userid=auth()->user()->name;
-        $username=EChannel::all()->where('hospital',$userid);
+        $username=EChannel::orderBy('created_at','desc')->where('hospital',$userid)->paginate(10);
+        
         return view('hospital.show')->with('username',$username);
          }else{
         

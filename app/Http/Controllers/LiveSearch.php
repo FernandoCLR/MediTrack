@@ -103,7 +103,7 @@ class LiveSearch extends Controller
         }
         $post -> save();
 
-        return redirect('/live_search/history/'.$id)->with('success','Timeline Event Updated');
+        return redirect('/live_search/history/'.$id.'/details')->with('success','Timeline Event Updated');
 
     }
 
